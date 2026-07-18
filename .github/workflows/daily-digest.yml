@@ -1,0 +1,40 @@
+name: Daily job digest
+
+on:
+  schedule:
+    # 21:00 UTC = 18:00 en Argentina (UTC-3). Ajustá según tu zona horaria.
+    - cron: "0 21 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  run-digest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+
+      - name: Correr el pipeline
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GMAIL_CLIENT_ID: ${{ secrets.GMAIL_CLIENT_ID }}
+          GMAIL_CLIENT_SECRET: ${{ secrets.GMAIL_CLIENT_SECRET }}
+          GMAIL_REFRESH_TOKEN: ${{ secrets.GMAIL_REFRESH_TOKEN }}
+          DIGEST_TO_EMAIL: ${{ secrets.DIGEST_TO_EMAIL }}
+        run: python -m src.main
+
+      - name: Commitear el estado actualizado (dedupe + historial)
+        run: |
+          git config user.name "job-agent-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/jobs.db
+          git diff --cached --quiet || git commit -m "Actualiza estado del pipeline [skip ci]"
+          git push
