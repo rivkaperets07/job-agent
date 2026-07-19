@@ -40,3 +40,4 @@ jobs:
           git add data/jobs.db
           git diff --cached --quiet || git commit -m "Actualiza estado del pipeline [skip ci]"
           git push
+
