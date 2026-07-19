@@ -5,17 +5,16 @@ Se manda tal cual al clasificador en cada corrida.
 
 ## Qué busco
 
-- Rol: Backend developer / Full stack
-- Seniority: Semi-senior / Senior
-- Stack: C#, .NET, Python
-- Modalidad: Remoto, o híbrido en Buenos Aires
+- Rol: Backend developer / IA — no tanto foco en Full stack
+- Seniority: Junior
+- Stack: C#, .NET, Python, IA/ML
+- Modalidad: Remoto, o híbrido en Jerusalem, Israel
 - Salario mínimo: (completá si querés que se filtre por esto)
 
 ## Qué NO quiero
 
 - Puestos de staffing/consultoras genéricas sin nombre de cliente final
-- Roles que pidan más de 8 años de experiencia
-- Pasantías / puestos junior
+- Roles que pidan varios años de experiencia excluyente (semi-senior/senior only)
 
 ## Notas
 
